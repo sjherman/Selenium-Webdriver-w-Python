@@ -1,0 +1,30 @@
+# import modules
+import pandas as pd
+import numpy as np
+from bs4 import BeautifulSoup
+import urllib.request
+from selenium import webdriver
+
+pd.set_option('display.max_colwidth', 15000) 
+
+
+# Specifies the url
+MWI_url = 'https://mwi.usma.edu/category/commentary-analysis/'
+
+# Run Chrome webdriver from the path where it is located (change backslashes to forward slashes)
+MWI_driver = webdriver.Chrome(executable_path = r'C:/webdrivers/chromedriver.exe')
+
+# Retrieves the specified URL to open
+MWI_driver.get(MWI_url)
+
+# Gets the htlm code
+MWI_html = MWI_driver.execute_script("return document.documentElement.outerHTML")
+
+# Parses text formatted in HTML
+MWI_soup = BeautifulSoup(MWI_html, 'html.parser')
+
+# <article> tag found in the html code found by using "Inspect" in Chrome  
+MWI_articles = MWI_soup.findAll("article")
+print('Number of articles -', len(MWI_articles))
+print()
+print(MWI_articles)
