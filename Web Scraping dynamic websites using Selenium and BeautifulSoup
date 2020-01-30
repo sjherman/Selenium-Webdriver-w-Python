@@ -2,7 +2,6 @@
 import pandas as pd
 import numpy as np
 from bs4 import BeautifulSoup
-import urllib.request
 from selenium import webdriver
 
 pd.set_option('display.max_colwidth', 15000) 
@@ -12,7 +11,8 @@ pd.set_option('display.max_colwidth', 15000)
 MWI_url = 'https://mwi.usma.edu/category/commentary-analysis/'
 
 # Run Chrome webdriver from the path where it is located (change backslashes to forward slashes)
-MWI_driver = webdriver.Chrome(executable_path = r'C:/webdrivers/chromedriver.exe')
+   # the 'r' (means 'raw') in the executable path allows python to read from a Windows formatted directory path
+MWI_driver = webdriver.Chrome(executable_path = r'C:/webdrivers/chromedriver.exe')  
 
 # Retrieves the specified URL to open
 MWI_driver.get(MWI_url)
