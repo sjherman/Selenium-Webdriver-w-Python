@@ -5,7 +5,15 @@ import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
 import csv
-import time
+
+# Sources used for the code
+     # https://www.youtube.com/watch?v=zjo9yFHoUl8
+     # https://www.youtube.com/watch?v=Z3vFdtZ7d-g
+
+
+# This code writes the scraped text to a CSV file. Since CSVs read into colums delaminated by commas, if you have 
+# commas in your text, it will move what follows into another column. Additional code is necessary to place all the 
+# text in the correct columns or you will need to clean the CSV file.
 
 
 # Creates a CSV file to store the scraped text - title of the blog post and the author
@@ -17,10 +25,12 @@ with open('SWJ.csv', 'w') as f:
 
 # Iterates through 11 pages of the blog to scrape the text
 for i in range(0,10):
+    # Must check the format of the hyperlink to loop correctly
     SWJ_pg_url = "https://smallwarsjournal.com/blog/recent?page=" + str(i)
     SWJ_driver.get(SWJ_pg_url)
     
     # Scrapes the title and author using the Selenium package, finding the elements by xpath
+    # Copy the xpath from the browser, use the last tag in the xpath, and identify the class where the text resides
     SWJ_blog_title = SWJ_driver.find_elements_by_xpath('//strong[@class="field-content"]')
     SWJ_blog_author = SWJ_driver.find_elements_by_xpath('//span/a')
 
