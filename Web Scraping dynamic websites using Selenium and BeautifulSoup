@@ -7,6 +7,12 @@ from selenium import webdriver
 pd.set_option('display.max_colwidth', 15000) 
 
 
+# Sources used for code:
+     # https://towardsdatascience.com/data-science-skills-web-scraping-javascript-using-python-97a29738353f
+     # https://www.youtube.com/watch?v=vcnomT0CP0Y
+     # https://www.youtube.com/watch?v=-yVNqaxejVg
+     
+
 # Specifies the url
 MWI_url = 'https://mwi.usma.edu/category/commentary-analysis/'
 
