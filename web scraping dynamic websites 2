@@ -1,0 +1,34 @@
+# import modules
+import pandas as pd
+import numpy as np
+import requests
+from bs4 import BeautifulSoup
+from selenium import webdriver
+import csv
+import time
+
+
+# Creates a CSV file to store the scraped text - title of the blog post and the author
+with open('SWJ.csv', 'w') as f:
+    f.write("Post Title, Author \n")
+
+# Creates the Chrome webdriver to run the selenium package. This opens the web page.
+    SWJ_driver = webdriver.Chrome()
+
+# Iterates through 11 pages of the blog to scrape the text
+for i in range(0,10):
+    SWJ_pg_url = "https://smallwarsjournal.com/blog/recent?page=" + str(i)
+    SWJ_driver.get(SWJ_pg_url)
+    
+    # Scrapes the title and author using the Selenium package, finding the elements by xpath
+    SWJ_blog_title = SWJ_driver.find_elements_by_xpath('//strong[@class="field-content"]')
+    SWJ_blog_author = SWJ_driver.find_elements_by_xpath('//span/a')
+
+    # Appends the text in the CSV file
+    SWJ_pg_items = len(SWJ_blog_title)
+    with open('SWJ.csv', 'a') as f:
+        for i in range(SWJ_pg_items):
+            f.write(SWJ_blog_title[i].text + "," + SWJ_blog_author[i].text + "\n")
+
+# Closes the web page when done
+SWJ_driver.close()
