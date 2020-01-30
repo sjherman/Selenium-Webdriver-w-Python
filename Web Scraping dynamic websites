@@ -20,7 +20,7 @@ MWI_driver.get(MWI_url)
 # Gets the htlm code
 MWI_html = MWI_driver.execute_script("return document.documentElement.outerHTML")
 
-# Parses text formatted in HTML
+# Parses text from HTML
 MWI_soup = BeautifulSoup(MWI_html, 'html.parser')
 
 # <article> tag found in the html code found by using "Inspect" in Chrome  
